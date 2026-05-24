@@ -1,23 +1,23 @@
 {
   "config": {
     "abort": {
-      "already_configured": "[%key:common::config_flow::abort::already_configured_account%]",
-      "reauth_successful": "[%key:common::config_flow::abort::reauth_successful%]",
-      "unknown": "[%key:common::config_flow::error::unknown%]"
+      "already_configured": "Account is already configured",
+      "reauth_successful": "Re-authentication was successful",
+      "unknown": "Unexpected error"
     },
     "error": {
-      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
-      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
-      "no_code": "Couldn't find a `code` parameter in the URL you pasted. Paste the full `com.sharkninja.shark://...?code=...` URL or just the code value.",
-      "unknown": "[%key:common::config_flow::error::unknown%]"
+      "cannot_connect": "Failed to connect",
+      "invalid_auth": "Invalid authentication",
+      "no_code": "Couldn't find a `code` parameter in the value you pasted. Paste the full `com.sharkninja.shark://...?code=...` URL, or just the value of the `code` parameter on its own.",
+      "unknown": "Unexpected error"
     },
     "flow_title": "Add Shark IQ (PKCE) account",
     "step": {
       "user": {
         "data": {
-          "password": "[%key:common::config_flow::data::password%]",
+          "password": "Password",
           "region": "Region",
-          "username": "[%key:common::config_flow::data::username%]"
+          "username": "Email"
         },
         "data_description": {
           "region": "Shark IQ uses different services in the EU. Select your region to connect to the correct service for your account."
@@ -35,9 +35,9 @@
       },
       "reauth_confirm": {
         "data": {
-          "password": "[%key:common::config_flow::data::password%]",
+          "password": "Password",
           "region": "Region",
-          "username": "[%key:common::config_flow::data::username%]"
+          "username": "Email"
         },
         "description": "Sign in again to refresh credentials. If Auth0 demands verification you'll be guided through the browser login."
       }
