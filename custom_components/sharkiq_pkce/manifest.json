@@ -1,0 +1,13 @@
+{
+  "domain": "sharkiq_pkce",
+  "name": "Shark IQ (PKCE)",
+  "codeowners": ["@sytone"],
+  "config_flow": true,
+  "documentation": "https://github.com/sytone/sharkiq-pkce-hass",
+  "integration_type": "hub",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/sytone/sharkiq-pkce-hass/issues",
+  "loggers": ["custom_components.sharkiq_pkce"],
+  "requirements": [],
+  "version": "0.1.0"
+}

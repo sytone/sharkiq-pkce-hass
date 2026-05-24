@@ -1,0 +1,71 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_account%]",
+      "reauth_successful": "[%key:common::config_flow::abort::reauth_successful%]",
+      "unknown": "[%key:common::config_flow::error::unknown%]"
+    },
+    "error": {
+      "cannot_connect": "[%key:common::config_flow::error::cannot_connect%]",
+      "invalid_auth": "[%key:common::config_flow::error::invalid_auth%]",
+      "no_code": "Couldn't find a `code` parameter in the URL you pasted. Paste the full `com.sharkninja.shark://...?code=...` URL or just the code value.",
+      "unknown": "[%key:common::config_flow::error::unknown%]"
+    },
+    "flow_title": "Add Shark IQ (PKCE) account",
+    "step": {
+      "user": {
+        "data": {
+          "password": "[%key:common::config_flow::data::password%]",
+          "region": "Region",
+          "username": "[%key:common::config_flow::data::username%]"
+        },
+        "data_description": {
+          "region": "Shark IQ uses different services in the EU. Select your region to connect to the correct service for your account."
+        },
+        "description": "Sign in to your SharkClean account. If Shark's Auth0 captcha trips, you'll be asked to complete a one-time browser login."
+      },
+      "pkce": {
+        "data": {
+          "redirect_url": "Redirect URL or code"
+        },
+        "data_description": {
+          "redirect_url": "Paste the full `com.sharkninja.shark://login.sharkninja.com/...?code=...&state=...` URL from your browser, or just the `code` value."
+        },
+        "description": "Shark's Auth0 service requires a one-time browser sign-in (captcha).\n\n1. Open this URL in a private/incognito browser window:\n\n   {pkce_url}\n\n2. Sign in with your SharkClean credentials and complete any captcha.\n3. The browser will try to navigate to a URL starting with `com.sharkninja.shark://...` and fail to load. Open DevTools (F12) → Network tab → find the request `authorize/resume?...` (status 302). In its Response Headers, copy the `Location:` value — it will start with `com.sharkninja.shark://` and contain `?code=...&state=...`.\n4. Paste that URL below.\n\nOnce verified, we'll cache the Auth0 refresh token so future restarts skip this step."
+      },
+      "reauth_confirm": {
+        "data": {
+          "password": "[%key:common::config_flow::data::password%]",
+          "region": "Region",
+          "username": "[%key:common::config_flow::data::username%]"
+        },
+        "description": "Sign in again to refresh credentials. If Auth0 demands verification you'll be guided through the browser login."
+      }
+    }
+  },
+  "exceptions": {
+    "invalid_room": {
+      "message": "The room {room} is unavailable to your vacuum. Make sure all rooms match the SharkClean app, including capitalisation."
+    }
+  },
+  "selector": {
+    "region": {
+      "options": {
+        "elsewhere": "Everywhere else",
+        "europe": "Europe"
+      }
+    }
+  },
+  "services": {
+    "clean_room": {
+      "description": "Cleans a specific user-defined room or set of rooms.",
+      "fields": {
+        "rooms": {
+          "description": "List of rooms to clean",
+          "name": "Rooms"
+        }
+      },
+      "name": "Clean room"
+    }
+  }
+}

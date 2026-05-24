@@ -1,0 +1,13 @@
+clean_room:
+  target:
+    entity:
+      integration: "sharkiq_pkce"
+      domain: "vacuum"
+  fields:
+    rooms:
+      required: true
+      example: "Kitchen"
+      default: ""
+      selector:
+        area:
+          multiple: true

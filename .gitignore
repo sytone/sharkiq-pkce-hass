@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# venvs / editors
+.venv/
+.idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local secrets / caches
+.shark_tokens.json
+*.local
