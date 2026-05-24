@@ -103,7 +103,7 @@ class SharkIqPkceConfigFlow(ConfigFlow, domain=DOMAIN):
         self._user_input: dict[str, Any] = {}
         self._pkce_url: str | None = None
         self._pkce_verifier: str | None = None
-        self._reauth_entry_id: str | None = None
+        self._pkce_reauth_entry_id: str | None = None
 
     # -------- user step --------
 
@@ -115,7 +115,7 @@ class SharkIqPkceConfigFlow(ConfigFlow, domain=DOMAIN):
 
         if user_input is not None:
             await self.async_set_unique_id(user_input[CONF_USERNAME].lower())
-            if self._reauth_entry_id is None:
+            if self._pkce_reauth_entry_id is None:
                 self._abort_if_unique_id_configured()
 
             self._user_input = dict(user_input)
@@ -189,7 +189,7 @@ class SharkIqPkceConfigFlow(ConfigFlow, domain=DOMAIN):
         self, entry_data: Mapping[str, Any]
     ) -> ConfigFlowResult:
         """Handle re-auth for an existing entry."""
-        self._reauth_entry_id = self.context.get("entry_id")
+        self._pkce_reauth_entry_id = self.context.get("entry_id")
         return await self.async_step_reauth_confirm()
 
     async def async_step_reauth_confirm(
@@ -208,8 +208,8 @@ class SharkIqPkceConfigFlow(ConfigFlow, domain=DOMAIN):
         if api.auth0_refresh_token:
             data[CONF_AUTH0_REFRESH_TOKEN] = api.auth0_refresh_token
 
-        if self._reauth_entry_id is not None:
-            entry = self.hass.config_entries.async_get_entry(self._reauth_entry_id)
+        if self._pkce_reauth_entry_id is not None:
+            entry = self.hass.config_entries.async_get_entry(self._pkce_reauth_entry_id)
             if entry is not None:
                 self.hass.config_entries.async_update_entry(entry, data=data)
                 await self.hass.config_entries.async_reload(entry.entry_id)
